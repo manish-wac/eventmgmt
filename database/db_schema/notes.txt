@@ -1,0 +1,7 @@
+need to keep all tables JSON schema in this folder with remarks
+
+
+{
+
+    
+}

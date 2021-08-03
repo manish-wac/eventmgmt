@@ -1,0 +1,93 @@
+.modal {
+    top: 300px !important;
+}
+
+div.hide {
+    display: none;
+}
+
+.modal div.results {
+    margin-left: 11px;
+    margin-right: 11px;
+}
+
+.header-wrap {
+    margin-left: auto !important;
+}
+
+div.aside-title img {
+    width: 90px;
+    height: 90px;
+}
+
+div.menu-submenu a.active {
+    background: #9ea4a9 !important;
+}
+
+div.menu-submenu a.active:hover {
+    color: #e2e7eb !important;
+    text-decoration: none !important;
+}
+
+.theme-light div.menu-submenu a:focus:not(.active) {
+    /* color: red; */
+    background: #9ea4a9 !important;
+}
+
+div.add-new a {
+    float: right;
+    color: #2196f3 !important;
+    cursor: pointer;
+}
+
+#common-alert {
+    margin-left: 19px;
+    margin-right: 19px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+select.form-control.is-valid, select.form-control.is-invalid {
+    background-image: none !important;
+}
+
+.country-not-selected {
+    pointer-events: none;
+    opacity: 0.5;
+}
+span.options {
+    border: none;
+}
+#js-add-new-questions-form .custom-radio label {
+    color: green;
+    font-weight: 900;
+    font-size: 15px;
+}
+
+#js-add-new-questions-form span {
+    font-weight: 900;
+    font-size: 15px;
+}
+
+.form-row > [class*="col-"] input, .form-row > .col input {
+    height: 40px;
+}
+
+.form-row > [class*="col-"] span, .form-row > .col span {
+    height: 40px;
+    margin-top: 5px;
+}
+.custom-control.custom-radio{
+    margin-top: 10px;
+}
+#js-add-new-questions-form .col-md-1{
+text-align: center;
+}
+
+#js-add-new-questions-form .float-label input{
+    height: 50px;
+}
+
+.custom-control-input.is-invalid ~ .custom-control-label, .was-validated .custom-control-input:invalid ~ .custom-control-label {
+    color: #f44336 !important;
+}

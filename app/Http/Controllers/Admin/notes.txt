@@ -1,0 +1,3 @@
+all admin controller inside this main folder
+
+submodule can be grouped with different folders

@@ -1,0 +1,3 @@
+Admin - all auth related controllers
+login, forgot pwd
+change pwd etc
