@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\Location\CountryController;
 use App\Http\Controllers\Admin\Location\StateController;
 use App\Http\Controllers\Admin\Location\DistrictController;
 use App\Http\Controllers\Admin\Location\TalukController;
+use App\Http\Controllers\Admin\Location\CityController;
+use App\Http\Controllers\Admin\Location\EventController;
 use App\Http\Controllers\Admin\Location\LocalBodiesController;
 use App\Http\Controllers\Admin\Location\MerchantUnitController;
 use App\Http\Controllers\Admin\Promoter\PromoterLOneController;
@@ -40,12 +42,12 @@ Route::get('reset-password/{token}/{email}', [IndexController::class, 'adminRese
 Route::post('update-password', [IndexController::class, 'adminUpdatePassword'])->name('admin.auth.update-password');
 
 Route::group(["middleware" => "admin"], function () {
-    
+
     Route::get('admin-dashboard', [IndexController::class, 'loadAdminDashboard'])->name('admin.auth.dashboard');
 
     Route::group(["prefix" => "admin"], function () {
 
-        /* routes for location submenus - start*/ 
+        /* routes for location submenus - start*/
         Route::group(["prefix" => "location"], function () {
             /* Submenu - Country  - start*/
                 Route::get('country', [CountryController::class, 'index'])->name('admin.auth.country');
@@ -61,7 +63,7 @@ Route::group(["middleware" => "admin"], function () {
                 Route::get('state', [StateController::class, 'index'])->name('admin.auth.state');
                 Route::get('state-list', [StateController::class, 'dataTable'])->name('admin.auth.state-list');
                 Route::post('add-state', [StateController::class, 'addSubmit'])->name('admin.location.add-new-state');
-                Route::get('get-state-details', [StateController::class, 'getStateDetails'])->name('admin.location.get-details-state'); 
+                Route::get('get-state-details', [StateController::class, 'getStateDetails'])->name('admin.location.get-details-state');
 
                 Route::post('update-state', [StateController::class, 'update'])->name('admin.location.update-state-details');
                 Route::delete('delete-state', [StateController::class, 'delete'])->name('admin.location.delete-state');
@@ -78,7 +80,7 @@ Route::group(["middleware" => "admin"], function () {
                 Route::post('update-district', [DistrictController::class, 'update'])->name('admin.location.update-district-details');
                 Route::delete('delete-district', [DistrictController::class, 'delete'])->name('admin.location.delete-district');
 
-                Route::get('get-district-details', [DistrictController::class, 'getDistrictDetails'])->name('admin.location.get-details-district'); 
+                Route::get('get-district-details', [DistrictController::class, 'getDistrictDetails'])->name('admin.location.get-details-district');
             /* Submenu - District  - end*/
 
             /* Submenu - Taluk  - start*/
@@ -96,6 +98,33 @@ Route::group(["middleware" => "admin"], function () {
 
 
             /* Submenu - Taluk  - end*/
+
+            /* Submenu - City  - start*/
+            Route::get('city', [CityController::class, 'index'])->name('admin.location.city');
+            Route::get('city-list', [CityController::class, 'dataTable'])->name('admin.location.city.datatable');
+            Route::get('city/add', [CityController::class, 'add'])->name('admin.location.city.add');
+            Route::post('city/add', [CityController::class, 'addSubmit'])->name('admin.location.city.addsubmit');
+            Route::get('city/check-unique', [CityController::class, 'checkUniqueName'])->name('admin.location.city.check-unique');
+            Route::get('city/edit/{id}', [CityController::class, 'edit'])->name('admin.location.city.edit');
+            Route::post('city/edit/{id}', [CityController::class, 'update'])->name('admin.location.city.update');
+            Route::get('city/get-all/{district_id}', [CityController::class, 'fetchAllCity'])->name('admin.location.city-fetch-all');
+
+            Route::delete('city/delete/{id}', [CityController::class, 'delete'])->name('admin.location.city.delete');
+            /* Submenu - City  - end*/
+
+            /* Submenu - Event  - start*/
+            Route::get('event', [EventController::class, 'index'])->name('admin.location.event');
+            Route::get('event-list', [EventController::class, 'dataTable'])->name('admin.location.event.datatable');
+            Route::get('event/add', [EventController::class, 'add'])->name('admin.location.event.add');
+            Route::post('event/add', [EventController::class, 'addSubmit'])->name('admin.location.event.addsubmit');
+            Route::get('event/check-unique', [EventController::class, 'checkUniqueName'])->name('admin.location.event.check-unique');
+            Route::get('event/edit/{id}', [EventController::class, 'edit'])->name('admin.location.event.edit');
+            Route::post('event/edit/{id}', [EventController::class, 'update'])->name('admin.location.event.update');
+            Route::get('event/get-all/{district_id}', [EventController::class, 'fetchAllEvent'])->name('admin.location.event-fetch-all');
+
+            Route::delete('event/delete/{id}', [EventController::class, 'delete'])->name('admin.location.event.delete');
+            /* Submenu - City  - end*/
+
 
             /* Submenu - Merchant-unit  - start*/
 
@@ -120,12 +149,12 @@ Route::group(["middleware" => "admin"], function () {
                 Route::delete('delete-local-bodies', [LocalBodiesController::class, 'delete'])->name('admin.location.delete-state');
             /* Submenu - local-bodies  - end*/
 
-        
+
     });
-    /* routes for location submenus - end*/ 
+    /* routes for location submenus - end*/
 
 
-    /* routes for promoter submenus - start*/ 
+    /* routes for promoter submenus - start*/
 
     Route::group(["prefix" => "admin/promoter"], function () {
 
@@ -138,7 +167,7 @@ Route::group(["middleware" => "admin"], function () {
         /* Submenu - Promoter L1  - end*/
 
     });
-   
+
         /* route for game submenus - start */
         Route::group(["prefix" => "games"], function () {
             /* Submenu - Game  - start*/

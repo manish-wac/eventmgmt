@@ -26,7 +26,7 @@
                 <span class="menu-item-text">Dashboard</span>
               </a>
             </div>
-           
+
             <div class="menu-item">
               <button class="menu-item-link menu-item-toggle {{ Request::is('*/location/*') ? 'active' : '' }}">
                 <div class="menu-item-icon">
@@ -63,6 +63,18 @@
                     <span class="menu-item-text">Taluk</span>
                   </a>
                 </div>
+                  <div class="menu-item">
+                      <a href="{{route('admin.location.city')}}" class="menu-item-link {{ Request::is('*/location/city') ? 'active' : '' }}" >
+                          <i class="fas fa-map-marker-alt"></i>
+                          <span class="menu-item-text">City</span>
+                      </a>
+                  </div>
+                  <div class="menu-item">
+                      <a href="{{route('admin.location.event')}}" class="menu-item-link {{ Request::is('*/location/event') ? 'active' : '' }}" >
+                          <i class="fas fa-map-marker-alt"></i>
+                          <span class="menu-item-text">Event</span>
+                      </a>
+                  </div>
                 <div class="menu-item">
                   <a href="{{route('admin.location.local-bodies')}}" class="menu-item-link {{ Request::is('*/location/local-bodies') ? 'active' : '' }}" >
                     <i class="fas fa-map-pin"></i>
@@ -129,7 +141,7 @@
                     <i class="fas fa-trophy"></i>
                     <span class="menu-item-text">Result Publication</span>
                   </a>
-                </div>                
+                </div>
               </div>
               <!-- END Menu Submenu -->
             </div>

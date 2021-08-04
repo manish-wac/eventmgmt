@@ -9,10 +9,10 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\District;
 
-class Taluk extends Eloquent
+class City extends Eloquent
 {
-    use HasFactory, SoftDeletes;
-    protected $collection = "taluks";
+    use HasFactory,SoftDeletes;
+    protected $collection = "citys";
 
     public function country()
     {
