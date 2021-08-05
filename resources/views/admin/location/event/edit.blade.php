@@ -1,3 +1,9 @@
+<?php
+//echo '<pre>';
+//print_r($event->file);
+//echo '</pre>';
+//exit();
+//?>
 @extends('admin.layouts.app')
 @section('headerClass','')
 
@@ -120,18 +126,36 @@
                       <div class="form-group">
                           <label for="js-event">Status</label>
                           <select name="status" id="status">
-                              <option value="0">Draft</option>
-                              <option value="1">Registration started</option>
-                              <option value="2">Registration closed</option>
-                              <option value="3">Event completed</option>
+                              <?php
+                              $event_status=$event->status;
+                              ?>
+                              <option value="0" <?php  if($event_status==0){echo 'selected';}?>>Draft</option>
+                              <option value="1" <?php  if($event_status==1){echo 'selected';}?>>Registration started</option>
+                              <option value="2" <?php  if($event_status==2){echo 'selected';}?>>Registration closed</option>
+                              <option value="3" <?php  if($event_status==3){echo 'selected';}?>>Event completed</option>
                           </select>
                       </div>
 
 
 {{--                      <div class="form-group">--}}
-{{--                          <label for="js-event">Select logo to upload:</label>--}}
-{{--                          <input type="file" name="logo" id="logo">--}}
+{{--                          <label for="js-event">Status</label>--}}
+{{--                          <select class="form-control" id="js-city" name="city">--}}
+{{--                              <option value=""> Select </option>--}}
+{{--                              @foreach($event as $eachEvent)--}}
+{{--                                  {{$eachEvent}}--}}
+{{--                                  <option value="{{$eachEvent->status}}" @if($eachEvent->status == $event->status) selected="selected" @endif>{{$eachCity->status}}</option>--}}
+{{--                              @endforeach--}}
+{{--                          </select>--}}
+{{--                          <span id="js-district-error" class="error invalid-feedback"></span>--}}
 {{--                      </div>--}}
+
+
+                      <div class="form-group">
+                          <label for="js-event">Uploaded Image:</label>
+                          <img src="{{ asset('photo/'.$event->file) }}">
+                      </div>
+
+
                       <div class="form-group">
                           <label for="js-event">Select logo to upload:</label>
                           {{--                      <input type="file" name="logo" id="logo">--}}
@@ -139,7 +163,6 @@
                       </div>
                       <div class="form-group">
                           <button type="submit" class="btn btn-primary mr-2" id="js-btn-submit">Submit</button>
-                          <button class="btn btn-default mr-2" id="js-btn-cancel">Cancel</button>
                       </div>
 
                   </form>

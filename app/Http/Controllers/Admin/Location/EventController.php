@@ -61,8 +61,7 @@ class EventController extends Controller
     {
        $validated = $request->validated();
 
-
-       $event= $validated['title'];
+        $event= $validated['title'];
 
        $oEvent = new Event;
        $oEvent->title = $event;
@@ -77,12 +76,15 @@ class EventController extends Controller
        $oEvent->event_to = $validated['event_to'];
         $oEvent->reg_from = $validated['reg_from'];
         $oEvent->reg_to = $validated['reg_to'];
+        $oEvent->status = $validated['status'];
 
         if($request->file('file')) {
             $oEvent->file = $validated['file'];
             $imageName = time() . '.' . $oEvent->file->extension();
             $oEvent->file->move(public_path('photo'), $imageName);
+            $oEvent->file = $imageName;
         }
+
 
        $oEvent->save();
 
@@ -144,11 +146,13 @@ class EventController extends Controller
         $oEvent->event_to = $validated['event_to'];
         $oEvent->reg_from = $validated['reg_from'];
         $oEvent->reg_to = $validated['reg_to'];
+        $oEvent->status = $validated['status'];
 
         if($request->file('file')) {
             $oEvent->file = $validated['file'];
             $imageName = time() . '.' . $oEvent->file->extension();
             $oEvent->file->move(public_path('photo'), $imageName);
+            $oEvent->file = $imageName;
         }
 
 

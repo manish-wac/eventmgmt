@@ -47,6 +47,9 @@ $(document).ready(function () {
             reg_to: {
                 required: true,
             },
+            status: {
+                required: true,
+            },
             event: {
                 required: true,
                 alpha: true,

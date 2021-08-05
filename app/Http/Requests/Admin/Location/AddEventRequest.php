@@ -38,6 +38,7 @@ class AddEventRequest extends FormRequest
             'state'   => 'required|exists:states,_id',
             'district' =>  'required|exists:districts,_id',
             'file' => '',
+            'status' => 'required',
         ];
     }
 }
