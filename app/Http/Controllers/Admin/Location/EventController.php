@@ -9,6 +9,7 @@ use App\Models\State;
 use App\Models\District;
 use App\Models\Event;
 use App\Models\City;
+use App\Models\Taluk;
 use Session;
 use Validator;
 use App\Http\Requests\Admin\Location\AddEventRequest;
@@ -32,8 +33,9 @@ class EventController extends Controller
     {
 
         $event = Event::latest()
-                ->with('country','state', 'district')
+                ->with('country','state', 'district', 'city')
                 ->get();
+
         return DataTables::of($event)
             ->addIndexColumn()
             ->addColumn('action', function($row){
@@ -57,26 +59,15 @@ class EventController extends Controller
 
     public function addSubmit(AddEventRequest $request)
     {
-
-
-
        $validated = $request->validated();
 
-//       $districtId = $validated['district'];
-       $event      = $validated['title'];
 
-       //check uniqueness
-
-//       if(Event::where('event', $event)->where('name', $event)->exists()) {
-//            return response()->json([
-//                'status' => false,
-//                'msg'    => 'Event Name Already exists'
-//            ], 400);
-//       }
+       $event= $validated['title'];
 
        $oEvent = new Event;
        $oEvent->title = $event;
        $oEvent->district_id = $validated['district'];
+       $oEvent->taluk_id = $validated['taluk'];
        $oEvent->state_id = $validated['state'];
        $oEvent->country_id = $validated['country'];
        $oEvent->city_id = $validated['city'];
@@ -87,35 +78,16 @@ class EventController extends Controller
         $oEvent->reg_from = $validated['reg_from'];
         $oEvent->reg_to = $validated['reg_to'];
 
-//        print_r($validated);
-//        exit;
+        if($request->file('file')) {
+            $oEvent->file = $validated['file'];
+            $imageName = time() . '.' . $oEvent->file->extension();
+            $oEvent->file->move(public_path('photo'), $imageName);
+        }
 
-//        if ($image = $validated->file('logo')) {
-//            $destinationPath = 'photo/';
-//            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-//            $image->move($destinationPath, $profileImage);
-//            $oEvent->reg_to = "$profileImage";
-//        }
-
-
-//       $oEvent->created_by = Auth::guard('admin')->user();
        $oEvent->save();
 
-       if($oEvent->id) {
-           Session::flash('success', 'Event Added successfully');
-           return response()->json([
-                'status' => true,
-                'event_id' => $oEvent->id,
-           ]);
-       }
-       else {
-           return response()->json([
-                'status' => false,
-                'msg'    => 'Something went wrong'
-            ], 400);
-       }
-
-
+        Session::flash('success', 'Event Added successfully');
+        return redirect()->route('admin.location.event');
     }
 
     public function edit($id)
@@ -127,20 +99,23 @@ class EventController extends Controller
 
         $district = District::where('state_id', $event->state_id)->get();
         $city = City::where('district_id', $event->district_id)->get();
+        $taluk = Taluk::where('_id', $event->taluk_id)->get();
 
-        return view($this->view.'edit')->with(compact('event', 'district'))
+        return view($this->view.'edit')->with(compact('event', 'district', 'taluk'))
             ->with(compact('city', $city));
     }
 
     public function update(UpdateEventRequest $request, $id)
     {
+
+//        dd($request);
         $event = Event::find($id);
         if(empty($event)) {
             abort(404);
         }
        $validated  = $request->validated();
        $districtId = $validated['district'];
-       $event      = $validated['event'];
+       $event      = $validated['title'];
 
        //check uniqueness
 
@@ -154,6 +129,10 @@ class EventController extends Controller
 
 
        $oEvent = Event::find($id);
+
+//       print_r($oEvent);
+//       exit();
+
         $oEvent->title = $event;
         $oEvent->district_id = $validated['district'];
         $oEvent->state_id = $validated['state'];
@@ -166,18 +145,18 @@ class EventController extends Controller
         $oEvent->reg_from = $validated['reg_from'];
         $oEvent->reg_to = $validated['reg_to'];
 
-        if ($image = $validated->file('logo')) {
-            $destinationPath = 'photo/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $oEvent->reg_to = "$profileImage";
+        if($request->file('file')) {
+            $oEvent->file = $validated['file'];
+            $imageName = time() . '.' . $oEvent->file->extension();
+            $oEvent->file->move(public_path('photo'), $imageName);
         }
 
 
        $oEvent->save();
-
+//        Session::flash('success', 'Event Updated successfully');
+//        return redirect()->route('admin.location.event');
        if($oEvent->id) {
-           Session::flash('success', 'Event Upadated successfully');
+
            return response()->json([
                 'status' => true,
                 'event_id' => $oEvent->id,

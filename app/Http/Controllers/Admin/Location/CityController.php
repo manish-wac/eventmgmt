@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\District;
 use App\Models\City;
+use App\Models\Taluk;
 use Session;
 use Validator;
 use App\Http\Requests\Admin\Location\AddCityRequest;
@@ -31,7 +32,7 @@ class CityController extends Controller
     {
 
         $city = City::latest()
-                ->with('country','state', 'district')
+                ->with('country','state', 'district','taluk')
                 ->get();
         return DataTables::of($city)
             ->addIndexColumn()
@@ -72,6 +73,7 @@ class CityController extends Controller
 
        $oCity = new City;
        $oCity->name = $city;
+        $oCity->taluk_id = $validated['taluk'];
        $oCity->district_id = $validated['district'];
        $oCity->state_id = $validated['state'];
        $oCity->country_id = $validated['country'];
@@ -102,9 +104,13 @@ class CityController extends Controller
             abort(404);
         }
 
-        $district = District::where('state_id', $city->state_id)->get();
+//        print_r($city);
+//        exit();
 
-        return view($this->view.'edit')->with(compact('city', 'district'));
+        $district = District::where('state_id', $city->state_id)->get();
+        $taluk = Taluk::where('district_id', $city->district_id)->get();
+
+        return view($this->view.'edit')->with(compact('city','district','taluk'));
     }
 
     public function update(UpdateCityRequest $request, $id)
@@ -130,6 +136,7 @@ class CityController extends Controller
 
        $oCity = City::find($id);
        $oCity->name = $city;
+        $oCity->taluk_id = $validated['taluk'];
        $oCity->district_id = $validated['district'];
        $oCity->state_id = $validated['state'];
        $oCity->country_id = $validated['country'];
@@ -137,7 +144,7 @@ class CityController extends Controller
        $oCity->save();
 
        if($oCity->id) {
-           Session::flash('success', 'City Upadated successfully');
+           Session::flash('success', 'City Updated successfully');
            return response()->json([
                 'status' => true,
                 'city_id' => $oCity->id,
@@ -188,9 +195,9 @@ class CityController extends Controller
         }
     }
 
-    public function fetchAllCity($districtId)
+    public function fetchAllCity($taluk_id)
     {
-        $city = City::where('district_id', $districtId)->get();
+        $city = City::where('taluk_id', $taluk_id)->get();
 
         return response()->json([
             'city' => $city

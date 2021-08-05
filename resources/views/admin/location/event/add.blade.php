@@ -19,7 +19,8 @@
                </div>
                <div class="portlet-body">
 			   	  @include('admin.partials.messages')
-                  <form action ="{{route('admin.location.event.addsubmit')}}" method="POST" id="js-add-event-form" enctype="multipart/form-data">
+{{--                  <form action ="{{route('admin.location.event.addsubmit')}}" method="POST" id="js-add-event-form" enctype="multipart/form-data">--}}
+                      <form method="POST" class="panel-body" id="js-add-event-form" action="{{route('admin.location.event.addsubmit')}}" enctype="multipart/form-data">
 				  	@csrf
 					  <div class="form-group">
                      <label for="js-country">Country</label>
@@ -41,6 +42,7 @@
                         </select>
 						<span id="js-state-error" class="error invalid-feedback"></span>
                      </div>
+
                      <div class="form-group">
                         <label for="js-district">District</label>
                         <select class="form-control" id="js-district" name="district">
@@ -48,6 +50,14 @@
                         </select>
 						<span id="js-district-error" class="error invalid-feedback"></span>
                      </div>
+
+                          <div class="form-group">
+                              <label for="js-taluk">Taluk</label>
+                              <select class="form-control" id="js-taluk" name="taluk">
+                                  <option value=""> Select </option>
+                              </select>
+                              <span id="js-taluk-error" class="error invalid-feedback"></span>
+                          </div>
 
                       <div class="form-group">
                           <label for="js-city">City</label>
@@ -99,16 +109,26 @@
                           <span id="js-event-error" class="error invalid-feedback"></span>
                       </div>
 
-{{--                      <div class="form-group">--}}
-{{--                          <label for="js-event">Select logo to upload:</label>--}}
-{{--                      <input type="file" name="logo" id="logo">--}}
-{{--                      </div>--}}
+                      <div class="form-group">
+                          <label for="js-event">Status</label>
+                          <select name="status" id="status">
+                              <option value="0">Draft</option>
+                              <option value="1">Registration started</option>
+                              <option value="2">Registration closed</option>
+                              <option value="3">Event completed</option>
+                          </select>
+                      </div>
 
+                      <div class="form-group">
+                          <label for="js-event">Select logo to upload:</label>
+{{--                      <input type="file" name="logo" id="logo">--}}
+                          <input name="file" type="file" accept="image/png, image/jpg, image/jpeg">
+                      </div>
+                          <div class="form-group">
+                              <button type="submit" class="btn btn-primary mr-2" id="js-btn-submit">Submit</button>
+                          </div>
                   </form>
-				  <div class="form-group">
-                        <button class="btn btn-primary mr-2" id="js-btn-submit">Submit</button>
-                        <button class="btn btn-default mr-2" id="js-btn-cancel">Cancel</button>
-                  </div>
+
                </div>
             </div>
             <!-- END Portlet -->

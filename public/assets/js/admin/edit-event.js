@@ -7,10 +7,10 @@ $(document).ready(function () {
         $("#js-btn-submit").removeAttr("disabled");
     }
 
-    $("#js-btn-submit").on("click", function () {
-        disableSubmitButton();
-        $("#js-edit-event-form").submit();
-    });
+    // $("#js-btn-submit").on("click", function () {
+    //     disableSubmitButton();
+    //     $("#js-edit-event-form").submit();
+    // });
 
     $("#js-edit-event-form").validate({
         rules: {
@@ -100,19 +100,19 @@ $(document).ready(function () {
 
     /* this separate adding required due to this bug : https://stackoverflow.com/questions/3170778/jquery-validation-plugin-remote-method-data-issue
      */
-    $("#js-event").rules("add", {
-        remote: function () {
-            return {
-                type: "GET",
-                contentType: "application/json; charset=utf-8",
-                url: CHECK_EVENT_UNIQUE_URL,
-                dataType: "json",
-                data: {
-                    event: $("#js-event").val(),
-                    district: $("#js-district").val(),
-                    eventId: $("#js-hdn-record-id").val(),
-                },
-            };
-        },
-    });
+    // $("#js-event").rules("add", {
+    //     remote: function () {
+    //         return {
+    //             type: "GET",
+    //             contentType: "application/json; charset=utf-8",
+    //             url: CHECK_EVENT_UNIQUE_URL,
+    //             dataType: "json",
+    //             data: {
+    //                 event: $("#js-event").val(),
+    //                 district: $("#js-district").val(),
+    //                 eventId: $("#js-hdn-record-id").val(),
+    //             },
+    //         };
+    //     },
+    // });
 });

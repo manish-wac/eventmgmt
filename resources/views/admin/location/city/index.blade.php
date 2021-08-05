@@ -30,6 +30,7 @@
 											<tr>
                         						<th>ID</th>
                                                 <th>City</th>
+                                                <th>Taluk</th>
                                                 <th>District</th>
                                                 <th>State</th>
 												<th>Country</th>
@@ -67,6 +68,7 @@ var  BASE_URL = "{{url('/')}}";
 		columns: [
 			{data: 'DT_RowIndex', name: 'DT_RowIndex'},
 			{data: 'name', name: 'name', class:'state_name'},
+			{data: 'taluk.name', name: 'taluk_name'},
 			{data: 'district.name', name: 'district_name', class:'district_name'},
 			{data: 'state.name', name: 'state_name', class:'state_name'},
 			{data: 'country.name', name: 'country_name', class:'country_name'},

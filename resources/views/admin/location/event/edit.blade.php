@@ -20,7 +20,7 @@
                <div class="portlet-body">
 			   	  @include('admin.partials.messages')
 
-                  <form action ="{{route('admin.location.event.update', ['id'=> $event->id])}}" method="POST" id="js-edit-event-form">
+                  <form action ="{{route('admin.location.event.update', ['id'=> $event->id])}}" method="POST" enctype="multipart/form-data" id="js-edit-event-form">
 				  	@csrf
                     <input type="hidden" id="js-hdn-record-id" value="{{$event->id}}">
 					  <div class="form-group">
@@ -45,19 +45,30 @@
                         <select class="form-control" id="js-district" name="district">
                           <option value=""> Select </option>
                           @foreach($district as $eachDistrict)
-                            <option value="{{$eachDistrict->id}}" @if($eachDistrict->id == $event->district_id) selected="selected" @endif>{{$eachDistrict->name}}</optiom>
+                            <option value="{{$eachDistrict->id}}" @if($eachDistrict->id == $event->district_id) selected="selected" @endif>{{$eachDistrict->name}}</option>
                           @endforeach
                         </select>
 						<span id="js-district-error" class="error invalid-feedback"></span>
                      </div>
 
                       <div class="form-group">
+                          <label for="js-taluk">Taluk</label>
+                          <select class="form-control" id="js-taluk" name="taluk">
+                              <option value=""> Select </option>
+                              @foreach($taluk as $eachTaluk)
+                                  <option value="{{$eachTaluk->id}}" @if($eachTaluk->id == $event->taluk_id) selected="selected" @endif>{{$eachTaluk->name}}</option>
+                              @endforeach
+                          </select>
+                          <span id="js-taluk-error" class="error invalid-feedback"></span>
+                      </div>
+
+
+                      <div class="form-group">
                           <label for="js-city">City</label>
                           <select class="form-control" id="js-city" name="city">
                               <option value=""> Select </option>
                               @foreach($city as $eachCity)
-
-                                  <option value="{{$eachCity->id}}" @if($eachCity->id == $event->city_id) selected="selected" @endif>{{$eachCity->name}}</optiom>
+                                  <option value="{{$eachCity->id}}" @if($eachCity->id == $event->city_id) selected="selected" @endif>{{$eachCity->name}}</option>
                               @endforeach
                           </select>
                           <span id="js-district-error" class="error invalid-feedback"></span>
@@ -106,17 +117,33 @@
                           <span id="js-event-error" class="error invalid-feedback"></span>
                       </div>
 
+                      <div class="form-group">
+                          <label for="js-event">Status</label>
+                          <select name="status" id="status">
+                              <option value="0">Draft</option>
+                              <option value="1">Registration started</option>
+                              <option value="2">Registration closed</option>
+                              <option value="3">Event completed</option>
+                          </select>
+                      </div>
+
+
 {{--                      <div class="form-group">--}}
 {{--                          <label for="js-event">Select logo to upload:</label>--}}
 {{--                          <input type="file" name="logo" id="logo">--}}
 {{--                      </div>--}}
-
+                      <div class="form-group">
+                          <label for="js-event">Select logo to upload:</label>
+                          {{--                      <input type="file" name="logo" id="logo">--}}
+                          <input name="file" type="file" accept="image/png, image/jpg, image/jpeg">
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-primary mr-2" id="js-btn-submit">Submit</button>
+                          <button class="btn btn-default mr-2" id="js-btn-cancel">Cancel</button>
+                      </div>
 
                   </form>
-				  <div class="form-group">
-                        <button class="btn btn-primary mr-2" id="js-btn-submit">Submit</button>
-                        <button class="btn btn-default mr-2" id="js-btn-cancel">Cancel</button>
-                  </div>
+
                </div>
             </div>
             <!-- END Portlet -->

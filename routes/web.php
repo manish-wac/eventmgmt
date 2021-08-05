@@ -107,7 +107,7 @@ Route::group(["middleware" => "admin"], function () {
             Route::get('city/check-unique', [CityController::class, 'checkUniqueName'])->name('admin.location.city.check-unique');
             Route::get('city/edit/{id}', [CityController::class, 'edit'])->name('admin.location.city.edit');
             Route::post('city/edit/{id}', [CityController::class, 'update'])->name('admin.location.city.update');
-            Route::get('city/get-all/{district_id}', [CityController::class, 'fetchAllCity'])->name('admin.location.city-fetch-all');
+            Route::get('city/get-all/{taluk_id}', [CityController::class, 'fetchAllCity'])->name('admin.location.city-fetch-all');
 
             Route::delete('city/delete/{id}', [CityController::class, 'delete'])->name('admin.location.city.delete');
             /* Submenu - City  - end*/

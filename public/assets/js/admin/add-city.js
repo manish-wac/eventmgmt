@@ -11,6 +11,37 @@ $(document).ready(function () {
         fetchDistricts(stateId);
     });
 
+    $("#js-district").on("change", function () {
+        // alert('taluk');
+        var district = this.value;
+        disableSubmitButton();
+        fetchTaluk(district);
+    });
+
+    function fetchTaluk(district) {
+        $.ajax({
+            url: BASE_URL + "/admin/location/taluk/get-all/" + district,
+            type: "GET",
+            success: function (res) {
+                var taluk = res.taluk;
+                var html = "<option value=''> Select </option>";
+
+                $.each(taluk, function (ind, item) {
+                    html +=
+                        "<option value='" +
+                        item._id +
+                        "'> " +
+                        item.name +
+                        "</option>";
+                });
+
+                $("#js-taluk").html(html);
+                enableSubmitButton();
+            },
+        });
+    }
+
+
     function fetchStates(countryId) {
         $.ajax({
             url: BASE_URL + "/admin/location/state/get-all/" + countryId,

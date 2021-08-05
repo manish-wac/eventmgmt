@@ -26,15 +26,18 @@ class AddEventRequest extends FormRequest
         return [
             'title' => 'required',
             'city' => 'required',
+            'taluk' => 'required',
             'event_from' => 'required',
             'event_to' => 'required',
             'reg_from' => 'required',
             'reg_to' => 'required',
             'location' => 'required',
             'address' => 'required',
+            'status' => 'required',
             'country' => 'required|exists:countries,_id',
             'state'   => 'required|exists:states,_id',
             'district' =>  'required|exists:districts,_id',
+            'file' => '',
         ];
     }
 }

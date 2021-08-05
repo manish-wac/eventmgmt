@@ -34,4 +34,11 @@ class City extends Eloquent
             'name' => '',
         ]);
     }
+
+    public function taluk()
+    {
+        return $this->belongsTo(Taluk::class)->withDefault([
+            'name' => '',
+        ]);
+    }
 }

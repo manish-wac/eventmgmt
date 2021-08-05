@@ -24,6 +24,7 @@ class AddCityRequest extends FormRequest
     public function rules()
     {
         return [
+            'taluk' => 'required',
             'city' => 'required',
             'country' => 'required|exists:countries,_id',
             'state'   => 'required|exists:states,_id',

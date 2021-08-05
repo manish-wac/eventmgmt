@@ -50,6 +50,19 @@
                         </select>
 						<span id="js-district-error" class="error invalid-feedback"></span>
                      </div>
+
+                      <div class="form-group">
+                          <label for="js-taluk">Taluk</label>
+                          <select class="form-control" id="js-taluk" name="taluk">
+                              <option value=""> Select </option>
+                              @foreach($taluk as $eachtaluk)
+                                  <option value="{{$eachtaluk->id}}" @if($eachtaluk->id == $city->taluk_id) selected="selected" @endif>{{$eachtaluk->name}}</optiom>
+                              @endforeach
+                          </select>
+                          <span id="js-taluk-error" class="error invalid-feedback"></span>
+                      </div>
+
+
                      <div class="form-group">
                         <label for="js-city">City</label>
                         <input type="text" class="form-control" id="js-city" placeholder="Enter City Name" name="city" value="{{$city->name}}">
@@ -59,7 +72,6 @@
                   </form>
 				  <div class="form-group">
                         <button class="btn btn-primary mr-2" id="js-btn-submit">Submit</button>
-                        <button class="btn btn-default mr-2" id="js-btn-cancel">Cancel</button>
                   </div>
                </div>
             </div>

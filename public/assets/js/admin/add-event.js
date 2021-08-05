@@ -14,7 +14,13 @@ $(document).ready(function () {
     $("#js-district").on("change", function () {
         var districtId = this.value;
         disableSubmitButton();
-        fetchCitys(districtId);
+        fetchTaluk(districtId);
+    });
+
+    $("#js-taluk").on("change", function () {
+        var talukId = this.value;
+        disableSubmitButton();
+        fetchCitys(talukId);
     });
 
 
@@ -64,9 +70,9 @@ $(document).ready(function () {
         });
     }
 
-    function fetchCitys(districtId) {
+    function fetchCitys(talukId) {
         $.ajax({
-            url: BASE_URL + "/admin/location/city/get-all/" + districtId,
+            url: BASE_URL + "/admin/location/city/get-all/" + talukId,
             type: "GET",
             success: function (res) {
                 var city = res.city;
@@ -87,6 +93,29 @@ $(document).ready(function () {
         });
     }
 
+    function fetchTaluk(district) {
+        $.ajax({
+            url: BASE_URL + "/admin/location/taluk/get-all/" + district,
+            type: "GET",
+            success: function (res) {
+                var taluk = res.taluk;
+                var html = "<option value=''> Select </option>";
+
+                $.each(taluk, function (ind, item) {
+                    html +=
+                        "<option value='" +
+                        item._id +
+                        "'> " +
+                        item.name +
+                        "</option>";
+                });
+
+                $("#js-taluk").html(html);
+                enableSubmitButton();
+            },
+        });
+    }
+
     function disableSubmitButton() {
         $("#js-btn-submit").attr("disabled", true);
     }
@@ -94,10 +123,6 @@ $(document).ready(function () {
     function enableSubmitButton() {
         $("#js-btn-submit").removeAttr("disabled");
     }
-
-    $("#js-btn-submit").on("click", function () {
-        $("#js-add-event-form").submit();
-    });
 
     $("#js-add-event-form").validate({
         rules: {
@@ -150,41 +175,7 @@ $(document).ready(function () {
             event: {},
         },
         submitHandler: function (form) {
-            var formData = $("#js-add-event-form").serialize();
-
-            $.ajax({
-                type: "POST",
-                data: formData,
-                success: function (res) {
-                    if (res.status) {
-                        window.location = EVENT_LISTING_PAGE;
-                    }
-                },
-                error: function (error) {
-                    enableSubmitButton();
-                    if ("errors" in error.responseJSON) {
-                        // $.each(
-                        //     error.responseJSON.errors,
-                        //     function (key, value) {
-                        //         $('[name="' + key + '"]')
-                        //             .removeClass("is-valid")
-                        //             .addClass("is-invalid");
-                        //         $('[name="' + key + '"]')
-                        //             .parents(".form-group")
-                        //             .find("span.invalid-feedback")
-                        //             .html(value)
-                        //             .attr("style", "display:block");
-                        //     }
-                        // );
-                    } else {
-                        var responseJson = error.responseJSON;
-                        var msg = responseJson.msg;
-                        $("#js-common-alert").html(
-                            '<div class="alert alert-danger">' + msg + "</div>"
-                        );
-                    }
-                },
-            });
+            form.submit();
         },
     });
 });
