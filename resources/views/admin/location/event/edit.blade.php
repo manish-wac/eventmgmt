@@ -4,7 +4,7 @@
 @push('css')
 
 	<title>Country | {{env('APP_NAME')}}</title>
-
+    <link href="{{asset('assets/css/jquery.comiseo.daterangepicker.css')}}" rel="stylesheet">
 @endpush
 @section('content')
 
@@ -94,32 +94,47 @@
                       </div>
 
                       <div class="form-group">
-                          <label for="js-event">Event From</label>
-                          <input type="date" class="form-control" id="js-event" placeholder="Enter Event From" name="event_from" value="{{$event->event_from}}">
+                          <label for="js-event">Select Event Range From - To</label>
+                          <input class="form-control" id="eventrange" name="eventrange" value="{{$event->eventrange}}">
                           <span id="js-event-error" class="error invalid-feedback"></span>
                       </div>
 
                       <div class="form-group">
-                          <label for="js-event">Event To</label>
-                          <input type="date" class="form-control" id="js-event" placeholder="Enter Event To" name="event_to" value="{{$event->event_to}}">
+                          <label for="js-event">Select Registration Range From - To</label>
+                          <input class="form-control" id="regrange" name="regrange" value="{{$event->regrange}}">
                           <span id="js-event-error" class="error invalid-feedback"></span>
                       </div>
 
-                      <div class="form-group">
-                          <label for="js-event">Registration From</label>
-                          <input type="date" class="form-control" id="js-event" placeholder="Enter Registration From" name="reg_from" value="{{$event->reg_from}}">
-                          <span id="js-event-error" class="error invalid-feedback"></span>
-                      </div>
 
-                      <div class="form-group">
-                          <label for="js-event">Registration To</label>
-                          <input type="date" class="form-control" id="js-event" placeholder="Enter Registration To" name="reg_to" value="{{$event->reg_to}}">
-                          <span id="js-event-error" class="error invalid-feedback"></span>
-                      </div>
+
+
+{{--                      <div class="form-group">--}}
+{{--                          <label for="js-event">Event From</label>--}}
+{{--                          <input type="date" class="form-control" id="js-event" placeholder="Enter Event From" name="event_from" value="{{$event->event_from}}">--}}
+{{--                          <span id="js-event-error" class="error invalid-feedback"></span>--}}
+{{--                      </div>--}}
+
+{{--                      <div class="form-group">--}}
+{{--                          <label for="js-event">Event To</label>--}}
+{{--                          <input type="date" class="form-control" id="js-event" placeholder="Enter Event To" name="event_to" value="{{$event->event_to}}">--}}
+{{--                          <span id="js-event-error" class="error invalid-feedback"></span>--}}
+{{--                      </div>--}}
+
+{{--                      <div class="form-group">--}}
+{{--                          <label for="js-event">Registration From</label>--}}
+{{--                          <input type="date" class="form-control" id="js-event" placeholder="Enter Registration From" name="reg_from" value="{{$event->reg_from}}">--}}
+{{--                          <span id="js-event-error" class="error invalid-feedback"></span>--}}
+{{--                      </div>--}}
+
+{{--                      <div class="form-group">--}}
+{{--                          <label for="js-event">Registration To</label>--}}
+{{--                          <input type="date" class="form-control" id="js-event" placeholder="Enter Registration To" name="reg_to" value="{{$event->reg_to}}">--}}
+{{--                          <span id="js-event-error" class="error invalid-feedback"></span>--}}
+{{--                      </div>--}}
 
                       <div class="form-group">
                           <label for="js-event">Status</label>
-                          <select name="status" id="status">
+                          <select name="status" id="status" class="form-control">
                               <?php
                               $event_status=$event->status;
                               ?>
@@ -173,6 +188,11 @@
 
 @push('js')
   <script type="text/javascript" src="{{asset('assets/js/admin/edit-event.js')}}"></script>
+  <script type="text/javascript" src="{{asset('assets/js/jquery.comiseo.daterangepicker.js')}}"></script>
+  <script>
+      $(function() { $("#eventrange").daterangepicker(); });
+      $(function() { $("#regrange").daterangepicker(); });
+  </script>
 <script>
 var BASE_URL   = $("#site-url").val();
 var CHECK_EVENT_UNIQUE_URL = "{{route('admin.location.event.check-unique')}}";

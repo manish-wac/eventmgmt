@@ -72,10 +72,10 @@ class EventController extends Controller
        $oEvent->city_id = $validated['city'];
        $oEvent->location = $validated['location'];
        $oEvent->address = $validated['address'];
-       $oEvent->event_from = $validated['event_from'];
-       $oEvent->event_to = $validated['event_to'];
-        $oEvent->reg_from = $validated['reg_from'];
-        $oEvent->reg_to = $validated['reg_to'];
+       $oEvent->eventrange = $validated['eventrange'];
+//       $oEvent->event_to = $validated['event_to'];
+        $oEvent->regrange = $validated['regrange'];
+//        $oEvent->reg_to = $validated['reg_to'];
         $oEvent->status = $validated['status'];
 
         if($request->file('file')) {
@@ -142,10 +142,8 @@ class EventController extends Controller
         $oEvent->city_id = $validated['city'];
         $oEvent->location = $validated['location'];
         $oEvent->address = $validated['address'];
-        $oEvent->event_from = $validated['event_from'];
-        $oEvent->event_to = $validated['event_to'];
-        $oEvent->reg_from = $validated['reg_from'];
-        $oEvent->reg_to = $validated['reg_to'];
+        $oEvent->event_from = $validated['eventrange'];
+        $oEvent->reg_from = $validated['regrange'];
         $oEvent->status = $validated['status'];
 
         if($request->file('file')) {

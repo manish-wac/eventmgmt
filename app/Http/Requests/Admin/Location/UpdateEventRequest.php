@@ -26,10 +26,8 @@ class UpdateEventRequest extends FormRequest
         return [
             'title' => 'required',
             'city' => 'required',
-            'event_from' => 'required',
-            'event_to' => 'required',
-            'reg_from' => 'required',
-            'reg_to' => 'required',
+            'eventrange' => 'required',
+            'regrange' => 'required',
             'location' => 'required',
             'address' => 'required',
             'status' => 'required',
@@ -37,7 +35,6 @@ class UpdateEventRequest extends FormRequest
             'state'   => 'required|exists:states,_id',
             'district' =>  'required|exists:districts,_id',
             'file' => '',
-            'status' => 'required',
         ];
     }
 }

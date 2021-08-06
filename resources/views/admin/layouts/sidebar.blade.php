@@ -75,76 +75,76 @@
                           <span class="menu-item-text">Event</span>
                       </a>
                   </div>
-                <div class="menu-item">
-                  <a href="{{route('admin.location.local-bodies')}}" class="menu-item-link {{ Request::is('*/location/local-bodies') ? 'active' : '' }}" >
-                    <i class="fas fa-map-pin"></i>
-                    <span class="menu-item-text">Local Bodies</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="{{route('admin.location.merchant-unit')}}" class="menu-item-link {{ Request::is('*/location/merchant-unit') |  Request::is('*/location/merchant-unit/add') |  Request::is('*/location/merchant-unit/edit') ? 'active' : '' }}" >
-                    <i class="fas fa-map-pin"></i>
-                    <span class="menu-item-text">Merchant Units</span>
-                  </a>
-                </div>
+{{--                <div class="menu-item">--}}
+{{--                  <a href="{{route('admin.location.local-bodies')}}" class="menu-item-link {{ Request::is('*/location/local-bodies') ? 'active' : '' }}" >--}}
+{{--                    <i class="fas fa-map-pin"></i>--}}
+{{--                    <span class="menu-item-text">Local Bodies</span>--}}
+{{--                  </a>--}}
+{{--                </div>--}}
+{{--                <div class="menu-item">--}}
+{{--                  <a href="{{route('admin.location.merchant-unit')}}" class="menu-item-link {{ Request::is('*/location/merchant-unit') |  Request::is('*/location/merchant-unit/add') |  Request::is('*/location/merchant-unit/edit') ? 'active' : '' }}" >--}}
+{{--                    <i class="fas fa-map-pin"></i>--}}
+{{--                    <span class="menu-item-text">Merchant Units</span>--}}
+{{--                  </a>--}}
+{{--                </div>--}}
               </div>
               <!-- END Menu Submenu -->
             </div>
-            <div class="menu-item">
-              <button class="menu-item-link menu-item-toggle {{ Request::is('*/promotor/*') ? 'active' : '' }}">
-                <div class="menu-item-icon">
-                  <i class="fa fa-map-marker"></i>
-                </div>
-                <span class="menu-item-text">Promotor</span>
-                <div class="menu-item-addon">
-                  <i class="menu-item-caret caret"></i>
-                </div>
-              </button>
-              <!-- BEGIN Menu Submenu -->
-              <div class="menu-submenu">
-                <div class="menu-item">
-                  <a href="{{route('admin.promoter.l1-promoter')}}" class="menu-item-link {{ Request::is('*/promoter/l1-promoter') ? 'active' : '' }}" >
-                    <i class="fas fa-globe-americas"></i>
-                    <span class="menu-item-text">L1 promoter</span>
-                  </a>
-                </div>
-              </div>
-              <!-- END Menu Submenu -->
-            </div>
-            <div class="menu-item">
-              <button class="menu-item-link menu-item-toggle {{ Request::is('*/games/*') ? 'active' : '' }}">
-                <div class="menu-item-icon">
-                  <i class="fas  fa-gamepad ng-scope"></i>
-                </div>
-                <span class="menu-item-text">L1 Promotor</span>
-                <span class="menu-item-text">Game</span>
-                <div class="menu-item-addon">
-                  <i class="menu-item-caret caret"></i>
-                </div>
-              </button>
-              <!-- BEGIN Menu Submenu -->
-              <div class="menu-submenu">
-                <div class="menu-item">
-                  <a href="{{route('admin.games.game')}}" class="menu-item-link {{ Request::is('*/games/game') ? 'active' : '' }}">
-                    <i class="fas fa-chess"></i>
-                    <span class="menu-item-text">Game</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="{{route('admin.games.questions')}}" class="menu-item-link {{ Request::is('*/games/questions') ? 'active' : '' }}">
-                    <i class="fas fa-question-circle"></i>
-                    <span class="menu-item-text">Question</span>
-                  </a>
-                </div>
-                <div class="menu-item">
-                  <a href="{{route('admin.games.results')}}" class="menu-item-link {{ Request::is('*/games/results') ? 'active' : '' }}">
-                    <i class="fas fa-trophy"></i>
-                    <span class="menu-item-text">Result Publication</span>
-                  </a>
-                </div>
-              </div>
-              <!-- END Menu Submenu -->
-            </div>
+{{--            <div class="menu-item">--}}
+{{--              <button class="menu-item-link menu-item-toggle {{ Request::is('*/promotor/*') ? 'active' : '' }}">--}}
+{{--                <div class="menu-item-icon">--}}
+{{--                  <i class="fa fa-map-marker"></i>--}}
+{{--                </div>--}}
+{{--                <span class="menu-item-text">Promotor</span>--}}
+{{--                <div class="menu-item-addon">--}}
+{{--                  <i class="menu-item-caret caret"></i>--}}
+{{--                </div>--}}
+{{--              </button>--}}
+{{--              <!-- BEGIN Menu Submenu -->--}}
+{{--              <div class="menu-submenu">--}}
+{{--                <div class="menu-item">--}}
+{{--                  <a href="{{route('admin.promoter.l1-promoter')}}" class="menu-item-link {{ Request::is('*/promoter/l1-promoter') ? 'active' : '' }}" >--}}
+{{--                    <i class="fas fa-globe-americas"></i>--}}
+{{--                    <span class="menu-item-text">L1 promoter</span>--}}
+{{--                  </a>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--              <!-- END Menu Submenu -->--}}
+{{--            </div>--}}
+{{--            <div class="menu-item">--}}
+{{--              <button class="menu-item-link menu-item-toggle {{ Request::is('*/games/*') ? 'active' : '' }}">--}}
+{{--                <div class="menu-item-icon">--}}
+{{--                  <i class="fas  fa-gamepad ng-scope"></i>--}}
+{{--                </div>--}}
+{{--                <span class="menu-item-text">L1 Promotor</span>--}}
+{{--                <span class="menu-item-text">Game</span>--}}
+{{--                <div class="menu-item-addon">--}}
+{{--                  <i class="menu-item-caret caret"></i>--}}
+{{--                </div>--}}
+{{--              </button>--}}
+{{--              <!-- BEGIN Menu Submenu -->--}}
+{{--              <div class="menu-submenu">--}}
+{{--                <div class="menu-item">--}}
+{{--                  <a href="{{route('admin.games.game')}}" class="menu-item-link {{ Request::is('*/games/game') ? 'active' : '' }}">--}}
+{{--                    <i class="fas fa-chess"></i>--}}
+{{--                    <span class="menu-item-text">Game</span>--}}
+{{--                  </a>--}}
+{{--                </div>--}}
+{{--                <div class="menu-item">--}}
+{{--                  <a href="{{route('admin.games.questions')}}" class="menu-item-link {{ Request::is('*/games/questions') ? 'active' : '' }}">--}}
+{{--                    <i class="fas fa-question-circle"></i>--}}
+{{--                    <span class="menu-item-text">Question</span>--}}
+{{--                  </a>--}}
+{{--                </div>--}}
+{{--                <div class="menu-item">--}}
+{{--                  <a href="{{route('admin.games.results')}}" class="menu-item-link {{ Request::is('*/games/results') ? 'active' : '' }}">--}}
+{{--                    <i class="fas fa-trophy"></i>--}}
+{{--                    <span class="menu-item-text">Result Publication</span>--}}
+{{--                  </a>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--              <!-- END Menu Submenu -->--}}
+{{--            </div>--}}
             {{-- <div class="menu-item">
               <button class="menu-item-link menu-item-toggle">
                 <div class="menu-item-icon">
