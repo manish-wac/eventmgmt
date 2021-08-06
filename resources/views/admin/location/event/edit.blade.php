@@ -1,9 +1,3 @@
-<?php
-//echo '<pre>';
-//print_r($event->file);
-//echo '</pre>';
-//exit();
-//?>
 @extends('admin.layouts.app')
 @section('headerClass','')
 
@@ -152,7 +146,7 @@
 
                       <div class="form-group">
                           <label for="js-event">Uploaded Image:</label>
-                          <img src="{{ asset('photo/'.$event->file) }}">
+                          <img src="{{ asset('photo/'.$event->file) }}" width="500" height="500">
                       </div>
 
 

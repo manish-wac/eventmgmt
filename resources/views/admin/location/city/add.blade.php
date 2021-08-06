@@ -61,7 +61,7 @@
 
                      <div class="form-group">
                         <label for="js-city">City</label>
-                        <input type="text" class="form-control" id="js-city" placeholder="Enter City Name" name="city">
+                        <input type="text" class="form-control" id="js-city" placeholder="Enter City Name" name="city" value="{{old('city')}}">
 						      <span id="js-city-error" class="error invalid-feedback"></span>
                      </div>
 

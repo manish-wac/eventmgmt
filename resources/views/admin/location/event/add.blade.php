@@ -69,43 +69,43 @@
 
                      <div class="form-group">
                         <label for="js-event">Event</label>
-                        <input type="text" class="form-control" id="js-event" placeholder="Enter Event Title" name="title">
+                        <input type="text" class="form-control" id="js-event" placeholder="Enter Event Title" name="title" value="{{old('title')}}">
 						      <span id="js-event-error" class="error invalid-feedback"></span>
                      </div>
 
                       <div class="form-group">
                           <label for="js-event">Location</label>
-                          <input type="text" class="form-control" id="js-event" placeholder="Enter Event Location" name="location">
+                          <input type="text" class="form-control" id="js-event" placeholder="Enter Event Location" name="location" value="{{old('location')}}">
                           <span id="js-event-error" class="error invalid-feedback"></span>
                       </div>
 
                       <div class="form-group">
                           <label for="js-event">Address</label>
-                          <input type="text" class="form-control" id="js-event" placeholder="Enter Event Address" name="address">
+                          <input type="text" class="form-control" id="js-event" placeholder="Enter Event Address" name="address" value="{{old('address')}}">
                           <span id="js-event-error" class="error invalid-feedback"></span>
                       </div>
 
                       <div class="form-group">
                           <label for="js-event">Event From</label>
-                          <input type="date" class="form-control" id="js-event" placeholder="Enter Event From" name="event_from">
+                          <input type="date" class="form-control" id="js-event" placeholder="Enter Event From" name="event_from" value="{{old('event_from')}}">
                           <span id="js-event-error" class="error invalid-feedback"></span>
                       </div>
 
                       <div class="form-group">
                           <label for="js-event">Event To</label>
-                          <input type="date" class="form-control" id="js-event" placeholder="Enter Event To" name="event_to">
+                          <input type="date" class="form-control" id="js-event" placeholder="Enter Event To" name="event_to" value="{{old('event_to')}}">
                           <span id="js-event-error" class="error invalid-feedback"></span>
                       </div>
 
                       <div class="form-group">
                           <label for="js-event">Registration From</label>
-                          <input type="date" class="form-control" id="js-event" placeholder="Enter Registration From" name="reg_from">
+                          <input type="date" class="form-control" id="js-event" placeholder="Enter Registration From" name="reg_from" value="{{old('reg_from')}}">
                           <span id="js-event-error" class="error invalid-feedback"></span>
                       </div>
 
                       <div class="form-group">
                           <label for="js-event">Registration To</label>
-                          <input type="date" class="form-control" id="js-event" placeholder="Enter Registration To" name="reg_to">
+                          <input type="date" class="form-control" id="js-event" placeholder="Enter Registration To" name="reg_to" value="{{old('reg_to')}}">
                           <span id="js-event-error" class="error invalid-feedback"></span>
                       </div>
 
