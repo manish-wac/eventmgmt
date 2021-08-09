@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\Location\MerchantUnitController;
 use App\Http\Controllers\Admin\Promoter\PromoterLOneController;
 use App\Http\Controllers\Admin\Games\GameController;
 use App\Http\Controllers\Admin\Games\QuestionsController;
+use App\Http\Controllers\User\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,9 +26,20 @@ use App\Http\Controllers\Admin\Games\QuestionsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/events', [UserController::class, 'index'])->name('user.location.event');
+Route::get('event-list', [UserController::class, 'dataTable'])->name('user.location.event.datatable');
+
 
 
 Route::get('test/login', [TestController::class, 'authenticate']);

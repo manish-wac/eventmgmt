@@ -4,7 +4,7 @@
 
 @push('css')
 
-	<title>Event | {{env('APP_NAME')}}</title>
+	<title>Taluk | {{env('APP_NAME')}}</title>
 
 @endpush
 @section('content')
@@ -16,29 +16,25 @@
 							<!-- BEGIN Portlet -->
 							<div class="portlet">
 								<div class="portlet-header portlet-header-bordered">
-									<h3 class="portlet-title">EVENTS LIST</h3>
+									<h3 class="portlet-title">TALUKS LIST</h3>
 									<div class="col-md-6 add-new">
-										<a href="{{route('admin.location.event.add')}}"><i style="font-size: 3em;" class="fa fa-3x fa-plus-circle"></i></a>
+										<a href="{{route('admin.location.taluk.add')}}"><i style="font-size: 3em;" class="fa fa-3x fa-plus-circle"></i></a>
 									</div>
 								</div>
-
+                
 								<div class="portlet-body">
-
+									
 									<!-- BEGIN Datatable -->
-									<table id="js-event-list" class="table table-bordered table-striped table-hover">
+									<table id="js-taluk-list" class="table table-bordered table-striped table-hover">
 										<thead>
 											<tr>
                         						<th>ID</th>
-                                                <th>Event</th>
-                                                <th>City</th>
+                                                <th>Taluk</th>
                                                 <th>District</th>
                                                 <th>State</th>
 												<th>Country</th>
-												<th>Address</th>
-												<th>Location</th>
 												<th>Action</th>
-{{--												<th>Logo</th>--}}
-
+																							
 											</tr>
 										</thead>
 										<tbody>
@@ -63,22 +59,18 @@
 
 <script>
 var  BASE_URL = "{{url('/')}}";
- $(function () {
-	var table = $('#js-event-list').DataTable({
+ $(function () {    
+	var table = $('#js-taluk-list').DataTable({
 		processing: true,
 		serverSide: true,
-		ajax: "{{ route('admin.location.event.datatable') }}",
+		ajax: "{{ route('admin.location.taluk.datatable') }}",
 		columns: [
 			{data: 'DT_RowIndex', name: 'DT_RowIndex'},
-			{data: 'title', name: 'title'},
-			{data: 'city.name', name: 'city_name'},
+			{data: 'name', name: 'name', class:'state_name'},
 			{data: 'district.name', name: 'district_name', class:'district_name'},
 			{data: 'state.name', name: 'state_name', class:'state_name'},
 			{data: 'country.name', name: 'country_name', class:'country_name'},
-			{data: 'address', name: 'address'},
-			{data: 'location', name: 'location'},
 			{data: 'action', width: 'auto', name: 'action', orderable: false, searchable: false},
-			// {data: 'logo', width: 'auto', name: 'action', orderable: false, searchable: false},
 		]
 	});
 
@@ -86,7 +78,7 @@ var  BASE_URL = "{{url('/')}}";
 
 		var _id = $(this).attr('data-index');
 		Swal.fire({
-			title: 'Are you sure, do you want to delete this event?',
+			title: 'Are you sure, do you want to delete this taluk?',
 			text: "You won't be able to revert this!",
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -95,13 +87,13 @@ var  BASE_URL = "{{url('/')}}";
 		}).then((result) => {
 			if (result.value) {
 				$.ajax({
-					url: BASE_URL+'/admin/location/event/delete/'+_id ,
+					url: BASE_URL+'/admin/location/taluk/delete/'+_id ,
 					type: "DELETE",
 					dataType: "json",
 					success: function(result) {
 						if (result.status) $('<div class="alert alert-success" id="common-alert">' + result.msg + '</div>').insertBefore($('.wrapper .content .container-fluid'));
 						else $('<div class="alert alert-danger" id="common-alert">' + result.msg + '</div>').insertBefore($('.wrapper .content .container-fluid'));
-						$("#js-event-list").DataTable().ajax.reload();
+						$("#js-taluk-list").DataTable().ajax.reload();
 						setTimeout(function() {
 							$('#common-alert').remove();
 						}, 1000);
@@ -123,6 +115,6 @@ var  BASE_URL = "{{url('/')}}";
 
 
 </script>
-
-
+  
+	
 @endpush
